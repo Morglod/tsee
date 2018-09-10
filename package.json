@@ -1,0 +1,36 @@
+{
+  "name": "ts-event-emitter",
+  "version": "1.0.0",
+  "description": "Typed EventEmitter implemented trough\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Dh\u001b[C\u001b[C\u001b[D\u001bwith tsargs",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Morglod/ts-event-emitter.git"
+  },
+  "keywords": [
+    "types",
+    "ts",
+    "typescript",
+    "tsargs",
+    "events",
+    "eventemitter"
+  ],
+  "author": "morglod",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Morglod/ts-event-emitter/issues"
+  },
+  "homepage": "https://github.com/Morglod/ts-event-emitter#readme",
+  "devDependencies": {
+    "typescript": "^3.0.3"
+  },
+  "dependencies": {
+    "@types/node": "^10.9.4",
+    "tsargs": "^1.2.1"
+  }
+}
