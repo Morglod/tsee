@@ -1,5 +1,5 @@
 {
-  "name": "ts-event-emitter",
+  "name": "yet-another-unique-name-ts-event-emitter",
   "version": "1.1.0",
   "description": "Typed EventEmitter implemented with tsargs",
   "main": "lib/index.js",
