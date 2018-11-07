@@ -1,4 +1,6 @@
-# ts-event-emitter (WIP)
+[![NPM Version](https://badge.fury.io/js/yet-another-unique-name-ts-event-emitter.svg?style=flat)](https://www.npmjs.com/package/yet-another-unique-name-ts-event-emitter)
+
+# ts-event-emitter
 
 Typed EventEmitter implemented with [tsargs](https://www.npmjs.com/package/tsargs), based on nodejs EventEmitter.
 
