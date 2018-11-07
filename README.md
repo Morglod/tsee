@@ -7,11 +7,11 @@ Typed EventEmitter implemented with [tsargs](https://www.npmjs.com/package/tsarg
 ## Install & use
 
 ```
-npm i ts-event-emitter
+npm i yet-another-unique-name-ts-event-emitter
 ```
 
 ```ts
-import { EventEmitter } from 'ts-event-emitter';
+import { EventEmitter } from 'yet-another-unique-name-ts-event-emitter';
 
 const events = new EventEmitter<{
     foo: (a: number, b: string) => void,
@@ -41,3 +41,7 @@ emit<EventKey extends keyof EventMap>(
     this.emitter.emit(event as string, ...args);
 }
 ```
+
+## PS
+
+Thats absolutely awesome that now on npm there is a lot of trash packages with similar name, but without needed functionality!
