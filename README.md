@@ -18,12 +18,24 @@ const events = new EventEmitter<{
 events.emit('foo', 123, 'hello world');
 ```
 
-## Feature?
+## Feature
 
 `EventEmitter.emit`'s args is fully typed based on events map.
 
-For `foo` event in example above, signature is: `emit(string, number, string)`.
+For `foo` event in example above, signature is: `emit(eventName: string, a: number, b: string)`.
 
 ## Api
 
 `EventEmitter<T>` where `T` extends `{ [eventName]: Call signature }`.
+
+## How it works?
+
+Secret is [ArgsN from tsargs](https://github.com/Morglod/tsargs#pick-range-of-arguments):
+```ts
+emit<EventKey extends keyof EventMap>(
+    event: EventKey,
+    ...args: ArgsN<EventMap[EventKey]>
+) {
+    this.emitter.emit(event as string, ...args);
+}
+```

@@ -1,5 +1,5 @@
 import * as events from 'events';
-import { Arg1, Arg2, Arg3, Arg4, Arg5 } from 'tsargs';
+import { Arg1, Arg2, Arg3, Arg4, Arg5, ArgsN } from 'tsargs';
 
 export type Listener = (...args: any[]) => Promise<any>|void;
 export type DefaultEventMap = { [event: string]: Listener };
@@ -7,46 +7,17 @@ export type DefaultEventMap = { [event: string]: Listener };
 export class EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> {
     readonly emitter = new events.EventEmitter;
 
-    emit<EventKey extends keyof EventMap = string>(
+    emit<EventKey extends keyof EventMap>(
         event: EventKey,
-        arg1?: never, arg2?: never, arg3?: never, arg4?: never, arg5?: never,
-    );
-    emit<EventKey extends keyof EventMap = string>(
-        event: EventKey,
-        arg1: Arg1<EventMap[EventKey]>,
-        arg2?: never, arg3?: never, arg4?: never, arg5?: never,
-    );
-    emit<EventKey extends keyof EventMap = string>(
-        event: EventKey,
-        arg1: Arg1<EventMap[EventKey]>, arg2: Arg2<EventMap[EventKey]>,
-        arg3?: never, arg4?: never, arg5?: never,
-    );
-    emit<EventKey extends keyof EventMap = string>(
-        event: EventKey,
-        arg1: Arg1<EventMap[EventKey]>, arg2: Arg2<EventMap[EventKey]>, arg3: Arg3<EventMap[EventKey]>,
-        arg4?: never, arg5?: never,
-    );
-    emit<EventKey extends keyof EventMap = string>(
-        event: EventKey,
-        arg1: Arg1<EventMap[EventKey]>, arg2: Arg2<EventMap[EventKey]>, arg3: Arg3<EventMap[EventKey]>, arg4: Arg4<EventMap[EventKey]>,
-        arg5?: never,
-    );
-    emit<EventKey extends keyof EventMap = string>(
-        event: EventKey,
-        arg1: Arg1<EventMap[EventKey]>, arg2: Arg2<EventMap[EventKey]>, arg3: Arg3<EventMap[EventKey]>, arg4: Arg4<EventMap[EventKey]>, arg5: Arg5<EventMap[EventKey]>,
-    );
-    emit<EventKey extends keyof EventMap = string>(
-        event: EventKey,
-        arg1: Arg1<EventMap[EventKey]>, arg2: Arg2<EventMap[EventKey]>, arg3: Arg3<EventMap[EventKey]>, arg4: Arg4<EventMap[EventKey]>, arg5: Arg5<EventMap[EventKey]>
+        ...args: ArgsN<EventMap[EventKey]>
     ) {
-        // if (isDebug) console.log('emit', event, args);
-        this.emitter.emit(event as string, arg1, arg2, arg3, arg4, arg5);
+        this.emitter.emit(event as string, ...args);
     }
 
     async emitWait<EventKey extends keyof EventMap = string>(
         timeout: number,
         event: EventKey,
-        ...args: any[]
+        ...args: ArgsN<EventMap[EventKey]>
     ) {
         // if (isDebug) console.log('emit', timeout, event, args);
         return new Promise(resolve => {
@@ -77,7 +48,3 @@ export class EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> {
         return this.emitter.listenerCount(event as string) !== 0;
     }
 }
-
-// export function createEventEmitter<EventMap extends DefaultEventMap>(): (EventEmitter_<EventMap> & { emit: ({  })[number] }) {
-//     return new EventEmitter_<EventMap>();
-// }

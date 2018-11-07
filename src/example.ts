@@ -4,4 +4,4 @@ const events = new EventEmitter<{
     foo: (a: number, b: string) => void,
 }>();
 
-events.emit('foo', 123);
+events.emit('foo', 123, 'helo');
