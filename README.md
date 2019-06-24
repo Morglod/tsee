@@ -1,47 +1,65 @@
-[![NPM Version](https://badge.fury.io/js/yet-another-unique-name-ts-event-emitter.svg?style=flat)](https://www.npmjs.com/package/yet-another-unique-name-ts-event-emitter)
+[![NPM Version](https://badge.fury.io/js/tsee.svg?style=flat)](https://www.npmjs.com/package/tsee)
 
-# ts-event-emitter
+# tsee
 
-Typed EventEmitter implemented with [tsargs](https://www.npmjs.com/package/tsargs), based on nodejs EventEmitter.
+Typed EventEmitter implemented with [tsargs](https://www.npmjs.com/package/tsargs), based on nodejs EventEmitter.  
+Fully implements `NodeJS.EventEmitter` type, provides interface & proxy class.
 
 ## Install & use
 
 ```
-npm i yet-another-unique-name-ts-event-emitter
+npm i tsee
 ```
 
+Simple usage:
 ```ts
-import { EventEmitter } from 'yet-another-unique-name-ts-event-emitter';
+import { EventEmitter } from 'tsee';
 
 const events = new EventEmitter<{
     foo: (a: number, b: string) => void,
 }>();
 
+// foo's arguments is fully type checked
 events.emit('foo', 123, 'hello world');
 ```
 
-## Feature
+Cast any other compatible to `NodeJS.EventEmitter` to typed:
+```ts
+import { asTypedEventEmitter } from 'tsee';
 
-`EventEmitter.emit`'s args is fully typed based on events map.
+const typedEmitter = asTypedEventEmitter<{
+    foo: (a: number, b: string) => void,
+    boo: (a: number, b: string) => void,
+}>(myEmitter);
 
-For `foo` event in example above, signature is: `emit(eventName: string, a: number, b: string)`.
+typedEmitter.emit('foo', 123, 'hello world');
+```
+
+## Advenced usage for non default event emitters
+
+If you use custom EventEmitter implementation, you can simply cast it to `tsee.EventEmitter` interface or pass class to `tsee.EventEmitter` constructor:
+
+```ts
+import { CustomEventEmitter } from 'my-event-emitter';
+import * as tsee from 'tsee';
+
+// Simple type case
+const typed = new CustomEventEmitter() as any as tsee.EventEmitter<{ ... }>;
+
+// Functional cast with `NodeJS.EventEmitter` type constraints
+const typed = asTypedEventEmitter<{ ... }>(new CustomEventEmitter());
+
+// Proxy object
+const typed = new tsee.EventEmitter<{ ... }>(CustomEventEmitter);
+
+```
+
+By default `tsee.EventEmitter` object will require 'events' package from nodejs.
 
 ## Api
 
 `EventEmitter<T>` where `T` extends `{ [eventName]: Call signature }`.
 
-## How it works?
+`EventEmitter.emit`'s args is fully typed based on events map.
 
-Secret is [ArgsN from tsargs](https://github.com/Morglod/tsargs#pick-range-of-arguments):
-```ts
-emit<EventKey extends keyof EventMap>(
-    event: EventKey,
-    ...args: ArgsN<EventMap[EventKey]>
-) {
-    this.emitter.emit(event as string, ...args);
-}
-```
-
-## PS
-
-Thats absolutely awesome that now on npm there is a lot of trash packages with similar name, but without needed functionality!
+For `foo` event in example above, signature is: `emit(eventName: string, a: number, b: string)`.
