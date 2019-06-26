@@ -3,7 +3,7 @@ import { ArgsN } from 'tsargs';
 export type Listener = (...args: any[]) => Promise<any>|void;
 export type DefaultEventMap = { [event in string|symbol]: Listener };
 
-export interface EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> {
+export interface IEventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> {
     emit<EventKey extends keyof EventMap>(
         event: EventKey,
         ...args: ArgsN<EventMap[EventKey]>
@@ -30,13 +30,13 @@ export interface EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap
 }
 
 /** cast type of any event emitter to typed event emitter */
-export function asTypedEventEmitter<EventMap extends DefaultEventMap, X extends NodeJS.EventEmitter>(x: X): EventEmitter<EventMap> {
+export function asTypedEventEmitter<EventMap extends DefaultEventMap, X extends NodeJS.EventEmitter>(x: X): IEventEmitter<EventMap> {
     return x as any;
 }
 
 /** Proxifying event emitter with types */
-export class EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> implements EventEmitter<EventMap> {
-    emitter: NodeJS.EventEmitter;
+export class EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> implements IEventEmitter<EventMap> {
+    private emitter: NodeJS.EventEmitter;
 
     constructor(
         baseClass: (new () => NodeJS.EventEmitter) = require('events').EventEmitter,

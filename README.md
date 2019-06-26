@@ -37,14 +37,14 @@ typedEmitter.emit('foo', 123, 'hello world');
 
 ## Advenced usage for non default event emitters
 
-If you use custom EventEmitter implementation, you can simply cast it to `tsee.EventEmitter` interface or pass class to `tsee.EventEmitter` constructor:
+If you use custom EventEmitter implementation, you can simply cast it to `tsee.IEventEmitter` interface or pass class to `tsee.EventEmitter` constructor:
 
 ```ts
 import { CustomEventEmitter } from 'my-event-emitter';
 import * as tsee from 'tsee';
 
 // Simple type case
-const typed = new CustomEventEmitter() as any as tsee.EventEmitter<{ ... }>;
+const typed = new CustomEventEmitter() as any as tsee.IEventEmitter<{ ... }>;
 
 // Functional cast with `NodeJS.EventEmitter` type constraints
 const typed = asTypedEventEmitter<{ ... }>(new CustomEventEmitter());

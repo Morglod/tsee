@@ -1,6 +1,6 @@
 {
   "name": "tsee",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Typed EventEmitter implemented with tsargs",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

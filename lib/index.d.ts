@@ -4,7 +4,7 @@ export declare type Listener = (...args: any[]) => Promise<any> | void;
 export declare type DefaultEventMap = {
     [event in string | symbol]: Listener;
 };
-export interface EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> {
+export interface IEventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> {
     emit<EventKey extends keyof EventMap>(event: EventKey, ...args: ArgsN<EventMap[EventKey]>): boolean;
     on<EventKey extends keyof EventMap = string>(event: EventKey, listener: EventMap[EventKey]): this;
     once<EventKey extends keyof EventMap = string>(event: EventKey, listener: EventMap[EventKey]): this;
@@ -22,10 +22,10 @@ export interface EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap
     listenerCount<EventKey extends keyof EventMap = string>(type: EventKey): number;
 }
 /** cast type of any event emitter to typed event emitter */
-export declare function asTypedEventEmitter<EventMap extends DefaultEventMap, X extends NodeJS.EventEmitter>(x: X): EventEmitter<EventMap>;
+export declare function asTypedEventEmitter<EventMap extends DefaultEventMap, X extends NodeJS.EventEmitter>(x: X): IEventEmitter<EventMap>;
 /** Proxifying event emitter with types */
-export declare class EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> implements EventEmitter<EventMap> {
-    emitter: NodeJS.EventEmitter;
+export declare class EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> implements IEventEmitter<EventMap> {
+    private emitter;
     constructor(baseClass?: (new () => NodeJS.EventEmitter));
     emit: <EventKey extends keyof EventMap>(event: EventKey, ...args: ArgsN<EventMap[EventKey]>) => boolean;
     on: <EventKey extends keyof EventMap = string>(event: EventKey, listener: EventMap[EventKey]) => this;
