@@ -37,7 +37,7 @@ typedEmitter.emit('foo', 123, 'hello world');
 
 ## Advenced usage for non default event emitters
 
-If you use custom EventEmitter implementation, you can simply cast it to `tsee.IEventEmitter` interface or pass class to `tsee.EventEmitter` constructor:
+If you use custom EventEmitter implementation, you can simply cast it to `tsee.IEventEmitter` interface:
 
 ```ts
 import { CustomEventEmitter } from 'my-event-emitter';
@@ -49,12 +49,9 @@ const typed = new CustomEventEmitter() as any as tsee.IEventEmitter<{ ... }>;
 // Functional cast with `NodeJS.EventEmitter` type constraints
 const typed = asTypedEventEmitter<{ ... }>(new CustomEventEmitter());
 
-// Proxy object
-const typed = new tsee.EventEmitter<{ ... }>(CustomEventEmitter);
-
 ```
 
-By default `tsee.EventEmitter` object will require 'events' package from nodejs.
+`tsee.EventEmitter` class is implemented EventEmitter from 'events' package.
 
 ## Api
 
@@ -62,4 +59,4 @@ By default `tsee.EventEmitter` object will require 'events' package from nodejs.
 
 `EventEmitter.emit`'s args is fully typed based on events map.
 
-For `foo` event in example above, signature is: `emit(eventName: string, a: number, b: string)`.
+For `foo` event in example above, signature is: `emit(eventName: 'foo', a: number, b: string)`.
