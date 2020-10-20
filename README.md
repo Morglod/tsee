@@ -2,8 +2,13 @@
 
 # tsee
 
-Typed EventEmitter implemented with [tsargs](https://www.npmjs.com/package/tsargs), based on nodejs EventEmitter.  
-Fully implements `NodeJS.EventEmitter` type, provides interface & proxy class.
+Fully implements `NodeJS.EventEmitter` type, provides interface & proxy class.  
+Arguments are fully typed, no extenral dependencies and it is small.
+
+## Not supported:
+
+* no `._eventsCount` (which is not standart)
+* no `.on('event')` / `.on('*')` etc
 
 ## Install & use
 

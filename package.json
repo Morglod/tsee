@@ -1,11 +1,11 @@
 {
   "name": "tsee",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Typed EventEmitter implemented with tsargs",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "tsc"
   },
   "repository": {
@@ -31,10 +31,10 @@
   },
   "homepage": "https://github.com/Morglod/ts-event-emitter#readme",
   "devDependencies": {
-    "typescript": "^3.6.2"
+    "@types/jest": "^26.0.0",
+    "assume": "^2.2.0",
+    "jest": "^26.0.1",
+    "typescript": "^3.9.5"
   },
-  "dependencies": {
-    "@types/node": "^12.7.2",
-    "tsargs": "^1.4.0"
-  }
+  "dependencies": {}
 }
