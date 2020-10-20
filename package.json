@@ -1,7 +1,7 @@
 {
   "name": "tsee",
-  "version": "1.3.0",
-  "description": "Typed EventEmitter implemented with tsargs",
+  "version": "1.3.1",
+  "description": "Typed EventEmitter implemented with typed args",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -16,7 +16,6 @@
     "types",
     "ts",
     "typescript",
-    "tsargs",
     "events",
     "eventemitter",
     "event-listener",
@@ -34,7 +33,6 @@
     "typescript": "^3.6.2"
   },
   "dependencies": {
-    "@types/node": "^12.7.2",
-    "tsargs": "^1.4.0"
+    "@types/node": "^12.7.2"
   }
 }

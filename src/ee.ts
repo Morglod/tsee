@@ -1,5 +1,4 @@
 import { DefaultEventMap, IEventEmitter } from './index';
-import { ArgsN } from 'tsargs';
 
 /** Implemented event emitter */
 export class EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> implements IEventEmitter<EventMap> {
@@ -11,7 +10,7 @@ export class EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> im
 
     emit = <EventKey extends keyof EventMap>(
         event: EventKey,
-        ...args: ArgsN<EventMap[EventKey]>
+        ...args: Parameters<EventMap[EventKey]>
     ) => {
         if (this.events[event]) {
             for (const e of this.events[event]) e(...args);
