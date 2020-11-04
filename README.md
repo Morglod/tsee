@@ -1,4 +1,4 @@
-[![NPM Version](https://badge.fury.io/js/tsee.svg?style=flat)](https://www.npmjs.com/package/tsee)
+[![NPM Version](https://badge.fury.io/js/tsee.svg?style=flat)](https://www.npmjs.com/package/tsee) [![NPM Downloads](https://img.shields.io/npm/dw/tsee)](https://www.npmjs.com/package/tsee)
 
 # tsee
 
