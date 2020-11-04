@@ -19,6 +19,6 @@ export declare class EventEmitter<EventMap extends DefaultEventMap = DefaultEven
     getMaxListeners: () => number;
     listeners: <EventKey extends keyof EventMap = string>(event: EventKey) => EventMap[EventKey][];
     rawListeners: <EventKey extends keyof EventMap = string>(event: EventKey) => EventMap[EventKey][];
-    eventNames: () => (string | symbol)[];
+    eventNames: () => Array<string | symbol>;
     listenerCount: <EventKey extends keyof EventMap = string>(type: EventKey) => number;
 }

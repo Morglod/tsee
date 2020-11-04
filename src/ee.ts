@@ -13,8 +13,9 @@ export class EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> im
         ...args: Parameters<EventMap[EventKey]>
     ) => {
         if (this.events[event]) {
+            const len = this.events[event].length;
             for (const e of this.events[event]) e(...args);
-            return !!this.events[event].length;
+            return !!len;
         }
         return false;
     };
@@ -26,7 +27,7 @@ export class EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> im
     once = <EventKey extends keyof EventMap = string>(event: EventKey, listener: EventMap[EventKey]): this => {
         const onceListener = ((...args: any) => {
             listener(...args);
-            this.removeListener(event, listener);
+            this.removeListener(event, onceListener);
         }) as any;
         this.addListener(event, onceListener);
         return this;
@@ -55,7 +56,7 @@ export class EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> im
     prependOnceListener = <EventKey extends keyof EventMap = string>(event: EventKey, listener: EventMap[EventKey]): this => {
         const onceListener = ((...args: any) => {
             listener(...args);
-            this.removeListener(event, listener);
+            this.removeListener(event, onceListener);
         }) as any;
         this.prependListener(event, onceListener);
         return this;
