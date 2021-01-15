@@ -35,7 +35,7 @@ const typedEmitter = asTypedEventEmitter<{
 typedEmitter.emit('foo', 123, 'hello world');
 ```
 
-## Advenced usage for non default event emitters
+## Advanced usage for non default event emitters
 
 If you use custom EventEmitter implementation, you can simply cast it to `tsee.IEventEmitter` interface:
 
