@@ -14,7 +14,8 @@ export class EventEmitter<EventMap extends DefaultEventMap = DefaultEventMap> im
     ) => {
         if (this.events[event]) {
             const len = this.events[event].length;
-            for (const e of this.events[event]) e(...args);
+            const events = Array.from(this.events[event]);
+            for (const e of events) e(...args);
             return !!len;
         }
         return false;
