@@ -5,6 +5,8 @@
 Typed EventEmitter implemented with typed args, based on nodejs EventEmitter.  
 Fully implements `NodeJS.EventEmitter` type, provides interface & proxy class.
 
+[Check 'tseep'! Same api but world fastest event emitter](https://github.com/Morglod/tseep)
+
 ## Install & use
 
 ```
@@ -12,27 +14,29 @@ npm i tsee
 ```
 
 Simple usage:
+
 ```ts
-import { EventEmitter } from 'tsee';
+import { EventEmitter } from "tsee";
 
 const events = new EventEmitter<{
-    foo: (a: number, b: string) => void,
+    foo: (a: number, b: string) => void;
 }>();
 
 // foo's arguments is fully type checked
-events.emit('foo', 123, 'hello world');
+events.emit("foo", 123, "hello world");
 ```
 
 Cast any other compatible to `NodeJS.EventEmitter` to typed:
+
 ```ts
-import { asTypedEventEmitter } from 'tsee';
+import { asTypedEventEmitter } from "tsee";
 
 const typedEmitter = asTypedEventEmitter<{
-    foo: (a: number, b: string) => void,
-    boo: (a: number, b: string) => void,
+    foo: (a: number, b: string) => void;
+    boo: (a: number, b: string) => void;
 }>(myEmitter);
 
-typedEmitter.emit('foo', 123, 'hello world');
+typedEmitter.emit("foo", 123, "hello world");
 ```
 
 ## Advenced usage for non default event emitters

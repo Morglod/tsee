@@ -1,6 +1,6 @@
 {
   "name": "tsee",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Typed EventEmitter implemented with typed args",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
